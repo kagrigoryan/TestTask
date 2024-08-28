@@ -3,15 +3,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const taskInput = document.getElementById('taskInput');
     const taskList = document.getElementById('taskList');
 
+    // Load tasks from Local Storage
     const loadTasks = () => {
         const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-        tasks.forEach(task => addTaskToDOM(task));
+        renderTasks(tasks);
     };
 
+    // Save tasks to Local Storage
     const saveTasks = (tasks) => {
         localStorage.setItem('tasks', JSON.stringify(tasks));
     };
 
+    // Add task to DOM
     const addTaskToDOM = (task) => {
         const taskElement = document.createElement('div');
         taskElement.classList.add('task');
@@ -34,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         taskList.appendChild(taskElement);
     };
 
+    // Add new task
     const addTask = (text) => {
         const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
         const newTask = {
@@ -43,30 +47,40 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         tasks.push(newTask);
         saveTasks(tasks);
-        addTaskToDOM(newTask);
+        renderTasks(tasks);
     };
 
+    // Toggle task completion
     const toggleTask = (id) => {
         const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
         const task = tasks.find(t => t.id === id);
         task.completed = !task.completed;
         saveTasks(tasks);
-        renderTasks();
+        renderTasks(tasks);
     };
 
+    // Delete task
     const deleteTask = (id) => {
         const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
         const updatedTasks = tasks.filter(t => t.id !== id);
         saveTasks(updatedTasks);
-        renderTasks();
+        renderTasks(updatedTasks);
     };
 
-    const renderTasks = () => {
+    // Render tasks
+    const renderTasks = (tasks) => {
         taskList.innerHTML = '';
-        const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-        tasks.forEach(task => addTaskToDOM(task));
+        const sortedTasks = tasks.sort((a, b) => a.completed - b.completed);
+        sortedTasks.forEach(task => addTaskToDOM(task));
+
+        // Smoothly move tasks to their new positions
+        const taskElements = document.querySelectorAll('.task');
+        taskElements.forEach(taskElement => {
+            taskList.appendChild(taskElement);
+        });
     };
 
+    // Event listener for form submission
     taskForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const taskText = taskInput.value.trim();
@@ -76,5 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Load tasks on page load
     loadTasks();
 });

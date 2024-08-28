@@ -93,6 +93,7 @@ button:hover {
     border: 1px solid #ccc;
     border-radius: 4px;
     background-color: #fff;
+    transition: all 0.3s ease;
 }
 
 .task.completed {

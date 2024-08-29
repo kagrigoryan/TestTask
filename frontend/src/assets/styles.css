@@ -1,8 +1,6 @@
-/* src/assets/styles.css */
-
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color:#EDF5E0;
     margin: 0;
     padding: 0;
     display: flex;
@@ -24,6 +22,7 @@ body {
 
 .header {
     position: sticky;
+    text-align: center;
     top: 0;
     background-color: #fff;
     z-index: 1;
@@ -48,7 +47,7 @@ input[type="text"] {
 button {
     padding: 10px 20px;
     border: none;
-    background-color: #28a745;
+    background-color: #4d9be4;
     color: #fff;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
@@ -89,12 +88,14 @@ li button {
     cursor: pointer;
     margin-left: 5px;
     color: #333;
-    transition: color 0.3s;
+    transition: color 0.3s, background-color 0.3s;
 }
 
 li button:hover {
     color: #000;
+    background-color: #e0e0e0;
 }
+
 
 li button i {
     font-size: 18px;
@@ -104,8 +105,12 @@ li button.delete {
     color: #dc3545;
 }
 
-li button.delete:hover {
-    color: #c82333;
+li .delete-button:hover i {
+    color: #dc3545;
+}
+
+li .save-button:hover {
+    color: #28a745;
 }
 
 li button.edit {
@@ -136,7 +141,7 @@ li button.edit:hover {
     display: flex;
     margin-bottom: 20px;
     position: sticky;
-    top: 60px; /* Adjust this value based on the height of the header */
+    top: 60px;
     background-color: #fff;
     z-index: 1;
 }
@@ -148,6 +153,7 @@ li button.edit:hover {
     background-color: #f4f4f4;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
+    color: #000;
 }
 
 .tabs button.active {

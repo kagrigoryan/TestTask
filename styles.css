@@ -94,6 +94,7 @@ button:hover {
     border-radius: 4px;
     background-color: #fff;
     transition: all 0.3s ease;
+    overflow: hidden;
 }
 
 .task.completed {
@@ -106,7 +107,14 @@ button:hover {
     margin-right: 10px;
 }
 
-.delete-task {
+.task-text {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.delete-task, .edit-task {
     margin-left: auto;
     background-color: transparent;
     border: none;
@@ -117,4 +125,32 @@ button:hover {
 
 .delete-task:hover {
     color: #d9534f;
+}
+
+.edit-task {
+    color: #080808;
+}
+
+.edit-task:hover {
+    color: #74a8bd;
+}
+
+.task-edit-input {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.save-task {
+    background-color: transparent;
+    border: none;
+    color: #121312;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.save-task:hover {
+    color: #04cf15;
 }

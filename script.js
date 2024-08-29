@@ -24,7 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         taskElement.innerHTML = `
             <input type="checkbox" class="task-checkbox" ${task.completed ? 'checked' : ''}>
-            <span>${task.text}</span>
+            <span class="task-text">${task.text}</span>
+            <button class="edit-task"><i class="fas fa-edit"></i></button>
             <button class="delete-task"><i class="fas fa-trash"></i></button>
         `;
 
@@ -33,6 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const deleteButton = taskElement.querySelector('.delete-task');
         deleteButton.addEventListener('click', () => deleteTask(task.id));
+
+        const editButton = taskElement.querySelector('.edit-task');
+        editButton.addEventListener('click', () => editTask(task.id, taskElement));
 
         taskList.appendChild(taskElement);
     };
@@ -65,6 +69,43 @@ document.addEventListener('DOMContentLoaded', () => {
         const updatedTasks = tasks.filter(t => t.id !== id);
         saveTasks(updatedTasks);
         renderTasks(updatedTasks);
+    };
+
+    // Edit task
+    const editTask = (id, taskElement) => {
+        const taskTextElement = taskElement.querySelector('.task-text');
+        const currentText = taskTextElement.textContent;
+
+        // Create input field and save button
+        const editInput = document.createElement('input');
+        editInput.type = 'text';
+        editInput.value = currentText;
+        editInput.classList.add('task-edit-input');
+
+        const saveButton = document.createElement('button');
+        saveButton.innerHTML = '<i class="fas fa-check"></i>';
+        saveButton.classList.add('save-task');
+        saveButton.addEventListener('click', () => saveEditedTask(id, editInput.value, taskElement));
+
+        // Replace task text with input field and save button
+        taskTextElement.replaceWith(editInput);
+        const editButton = taskElement.querySelector('.edit-task');
+        editButton.style.display = 'none';
+
+        // Insert save button before delete button
+        const deleteButton = taskElement.querySelector('.delete-task');
+        taskElement.insertBefore(saveButton, deleteButton);
+    };
+
+    // Save edited task
+    const saveEditedTask = (id, newText, taskElement) => {
+        if (newText.trim() !== '') {
+            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            const task = tasks.find(t => t.id === id);
+            task.text = newText.trim();
+            saveTasks(tasks);
+            renderTasks(tasks);
+        }
     };
 
     // Render tasks

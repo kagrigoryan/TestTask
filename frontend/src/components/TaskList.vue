@@ -15,10 +15,10 @@
             <li v-for="task in filteredTasks" :key="task.id" :class="{ completed: task.completed }">
                 <button @click="toggleTaskCompletion(task)">
                     <i v-if="task.completed" class="far fa-circle"></i>
-                    <i v-else class="fas fa-check"></i>
+                    <i v-else class="fas fa-check complete-icon"></i>
                 </button>
                 <span v-if="!task.editing" class="task-text">{{ task.title }}</span>
-                <input v-else type="text" class="task-edit-input" v-model="task.title" @blur="saveEditing(task)" @keydown.enter="saveEditing(task)">
+                <input v-else type="text" class="task-edit-input" :class="{ 'error': task.title.trim() === '' }" v-model="task.title" @blur="saveEditing(task)" @keydown.enter="saveEditing(task)">
                 <div>
                     <button v-if="!task.editing" @click="startEditing(task)" class="edit-button"><i class="fas fa-edit"></i></button>
                     <button v-else @click="saveEditing(task)" class="save-button"><i class="fas fa-save"></i></button>
@@ -80,6 +80,9 @@ export default {
             task.editing = true;
         },
         saveEditing(task) {
+            if (task.title.trim() === '') {
+                return;
+            }
             task.editing = false;
             this.saveTasks();
         }

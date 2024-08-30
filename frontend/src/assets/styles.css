@@ -1,19 +1,28 @@
+:root {
+    --primary-color: #4d9be4;
+    --secondary-color: #28a745;
+    --background-color: #f9f9f9;
+    --text-color: #333;
+    --border-color: #ccc;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color:#EDF5E0;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 99vh;
 }
 
 .container {
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px var(--shadow-color);
     width: 700px;
     height: 900px;
     display: flex;
@@ -30,6 +39,7 @@ body {
 
 h1 {
     margin-bottom: 20px;
+    color: var(--text-color);
 }
 
 form {
@@ -40,14 +50,20 @@ form {
 input[type="text"] {
     flex: 1;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     border-radius: 5px 0 0 5px;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+    border-color: var(--primary-color);
+    outline: none;
 }
 
 button {
     padding: 10px 20px;
     border: none;
-    background-color: #4d9be4;
+    background-color: var(--primary-color);
     color: #fff;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
@@ -55,7 +71,7 @@ button {
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: var(--secondary-color);
 }
 
 ul {
@@ -67,7 +83,7 @@ ul {
 }
 
 li {
-    background-color: #f9f9f9;
+    background-color: #fff;
     padding: 15px;
     margin-bottom: 10px;
     border-radius: 5px;
@@ -75,6 +91,7 @@ li {
     justify-content: space-between;
     align-items: center;
     transition: background-color 0.3s;
+    box-shadow: 0 2px 4px var(--shadow-color);
 }
 
 li.completed {
@@ -87,7 +104,8 @@ li button {
     border: none;
     cursor: pointer;
     margin-left: 5px;
-    color: #333;
+    margin-right: 5px;
+    color: var(--text-color);
     transition: color 0.3s, background-color 0.3s;
 }
 
@@ -95,7 +113,6 @@ li button:hover {
     color: #000;
     background-color: #e0e0e0;
 }
-
 
 li button i {
     font-size: 18px;
@@ -110,15 +127,20 @@ li .delete-button:hover i {
 }
 
 li .save-button:hover {
-    color: #28a745;
+    color: var(--secondary-color);
+    
 }
 
 li button.edit {
-    color: #007bff;
+    color: var(--primary-color);
 }
 
 li button.edit:hover {
     color: #0056b3;
+}
+
+li button .complete-icon:hover {
+    color: var(--secondary-color);
 }
 
 .task-text {
@@ -132,9 +154,19 @@ li button.edit:hover {
 .task-edit-input {
     flex: 1;
     padding: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     border-radius: 5px;
     margin-right: 10px;
+    transition: border-color 0.3s;
+}
+
+.task-edit-input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.task-edit-input.error {
+    border-color: red;
 }
 
 .tabs {
@@ -153,11 +185,11 @@ li button.edit:hover {
     background-color: #f4f4f4;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
-    color: #000;
+    color: var(--text-color);
 }
 
 .tabs button.active {
-    background-color: #28a745;
+    background-color: var(--secondary-color);
     color: #fff;
 }
 

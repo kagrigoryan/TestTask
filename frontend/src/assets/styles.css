@@ -1,0 +1,166 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color:#EDF5E0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 700px;
+    height: 900px;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    position: sticky;
+    text-align: center;
+    top: 0;
+    background-color: #fff;
+    z-index: 1;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #4d9be4;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+    overflow-y: auto;
+}
+
+li {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+li.completed {
+    text-decoration: line-through;
+    color: #aaa;
+}
+
+li button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-left: 5px;
+    color: #333;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+li button:hover {
+    color: #000;
+    background-color: #e0e0e0;
+}
+
+
+li button i {
+    font-size: 18px;
+}
+
+li button.delete {
+    color: #dc3545;
+}
+
+li .delete-button:hover i {
+    color: #dc3545;
+}
+
+li .save-button:hover {
+    color: #28a745;
+}
+
+li button.edit {
+    color: #007bff;
+}
+
+li button.edit:hover {
+    color: #0056b3;
+}
+
+.task-text {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 10px;
+}
+
+.task-edit-input {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+    position: sticky;
+    top: 60px;
+    background-color: #fff;
+    z-index: 1;
+}
+
+.tabs button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background-color: #f4f4f4;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    color: #000;
+}
+
+.tabs button.active {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.tabs button:hover {
+    background-color: #ddd;
+}
